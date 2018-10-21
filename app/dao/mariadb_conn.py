@@ -5,7 +5,7 @@ import pymysql
 
 # db 연결을 담당할 함스
 def get_connection():
-    return pymysql.connect(host='183.96.122.102', user='bigmining', password='09876', db='bigmining', charset='utf8')
+    return pymysql.connect(host='x.x.x.x', user='x', password='x', db='x', charset='utf8')
 
 
 # select한 데이터중 mysql datetime 형식의 값을 fullCalendar 에서 처리할수 있도록 포멧 변경
