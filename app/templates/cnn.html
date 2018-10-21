@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="{{ url_for('static',filename='js/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='js/jquery-ui/jquery-ui.min.js') }}"></script>
+  <h2>CIFAR10</h2>
+  <p>This is an About page for the Intro to Flask article. Don't I look good? Oh stop, you're making me blush.</p>
+    <form id="cifarForm">
+        <div id="cifar">test...</div>
+    </form>
+
+ <script>
+ $(document).ready(function() {
+   $.ajax({
+        url : '{{url_for('cifar')}}',
+        type : 'post',
+        data :$('#cifarForm').serialize(),
+        success : function(){
+            alert(1);
+        //  let data = JSON.parse(res);
+       //   if(data.rows > 0){
+            $("#cifar").html('completed : 테스트 데이터 정확도');
+       //   }
+       //   else{
+       //     alert('실패');
+      //    }
+        }
+      });
+ });
+ </script>
+{% endblock %}

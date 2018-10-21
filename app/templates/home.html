@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+{% block content %}
+
+  <link rel="stylesheet" href="{{ url_for('static',filename='js/jquery-ui/jquery-ui.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='js/jquery-ui/jquery-ui.structure.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='js/jquery-ui/jquery-ui.theme.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static',filename='js/fullcalendar/fullcalendar.css') }}" />
+  <style>
+  .event_selected {
+    background-color: red;
+  }
+  </style>
+
+  <script src="{{ url_for('static',filename='js/jquery/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/moment/moment.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/jquery-ui/jquery-ui.min.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/moment/moment.min.js') }}"></script>
+  <script src="{{url_for('static',filename='js/fullcalendar/fullcalendar.js')}}"></script>
+
+  <script>
+  $(document).ready(function() {
+    $("#calendar").fullCalendar({
+      events : '{{url_for('scheduler')}}',
+      dayClick : function(date){
+          $('#start, #end').datepicker('setDate',date._d);
+          $('.event_selected').removeClass('event_selected');
+          $(this).addClass('event_selected');
+      },
+      eventClick : function(event){
+        $('#id').val(event.id);
+        $('#title').val(event.title);
+        $('#start').val(event.start.toISOString());
+        $('#end').val(event.end == null ? event.start.toISOString() : event.end.toISOString() );
+        $('.event_selected').removeClass('event_selected');
+        $(this).addClass('event_selected');
+     }
+   });
+
+    $('#start, #end').datepicker({
+      dateFormat: "yy-mm-dd",
+      onSelect : function(dateText, inst){
+        if(this.id == 'start'){
+          $('#start').datepicker("getDate").getTime() > $('#end').datepicker("getDate").getTime();
+          $('#end').datepicker("setDate", dateText);
+        }
+      }
+    });
+
+    $('#start, #end').datepicker('setDate',new Date());
+
+    $('#insertBtn').click(function(){
+      $.ajax({
+        url : '{{url_for('scheduler')}}',
+        type : 'post',
+        data :$('#schedulerForm').serialize(),
+        success : function(res){
+          let data = JSON.parse(res);
+          if(data.rows > 0){
+            $("#calendar").fullCalendar( 'refetchEvents' )
+          }
+          else{
+            alert('실패');
+          }
+        }
+      });
+    });
+
+    $('#updateBtn').click(function(){
+      $.ajax({
+        url : '{{url_for('scheduler')}}',
+        type : 'put',
+        data :$('#schedulerForm').serialize(),
+        success : function(res){
+          let data = JSON.parse(res);
+          if(data.rows > 0){
+            $("#calendar").fullCalendar( 'refetchEvents' )
+          }
+          else{
+            alert('실패');
+          }
+        }
+      });
+    });
+
+    $('#deleteBtn').click(function(){
+      if(confirm($('#title').val() + " 일정을 삭제 하시겠습니까?")){
+        $.ajax({
+          url : '{{url_for('scheduler')}}',
+          type : 'delete',
+          data :{id:$('#id').val()},
+          success : function(res){
+            let data = JSON.parse(res);
+            if(data.rows > 0){
+              $("#calendar").fullCalendar( 'refetchEvents' )
+            }
+            else{
+              alert('실패');
+            }
+          }
+        });
+      }
+    });
+  });
+  </script>
+
+  <div class="jumbo">
+    <h2>Welcome to the Flask app</h2>
+    <h3>This is the home page for the Flask app</h3>
+  </div>
+  <div>
+    <form name="schedulerForm" id="schedulerForm">
+      start : <input type="text" name="start" id="start" readonly="readonly">
+      end : <input type="text" name="end" id="end" readonly="readonly">
+      title : <input type="text" name="title" id="title">
+      <input type="hidden" name="id" id="id">
+      <label for="allDay">하루</label>
+      <input type="checkbox" name="allDay" id="allDay" checked="checked" value="Y">
+      <button type="button" id="insertBtn">스케줄 등록</button>
+      <button type="button" id="updateBtn">스케줄 수정</button>
+      <button type="button" id="deleteBtn">스케줄 삭제</button>
+    </form>
+  </div>
+  <div id="calendar"></div>
+{% endblock %}
