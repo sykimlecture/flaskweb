@@ -1,0 +1,20 @@
+gittub push시 403 error 처리방법
+
+powershell 관리자권한으로
+
+git config --system credential.helper ""
+
+안되면
+
+git config --system --edit에서
+
+[http]
+        sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+        sslBackend = openssl
+[diff "astextplain"]
+        textconv = astextplain
+[credential]
+        helper = ""
+        
+
+helper 부분을 위와 같이 공백("")처리한다.
