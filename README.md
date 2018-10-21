@@ -19,3 +19,16 @@
 
 5. mariadb 설치
    D:\workspace\flaskweb>pip install pymysql
+   
+6. sql 생성
+   CREATE TABLE `my_schedule` (
+      `id` INT(11) NOT NULL AUTO_INCREMENT,
+      `title` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+      `start` DATETIME NOT NULL,
+      `end` DATETIME NOT NULL,
+      `allDay` CHAR(1) NOT NULL DEFAULT 'Y' COLLATE 'utf8mb4_unicode_ci',
+      PRIMARY KEY (`id`)
+   )
+   COLLATE='utf8mb4_unicode_ci'
+   ENGINE=InnoDB
+   AUTO_INCREMENT=7;
