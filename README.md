@@ -8,13 +8,14 @@
 
 3. C:\>pip install virtualenv
 
-4. 프로젝트 디렉토리 생성
+4. 프로젝트 디렉토리 생성(Include, Lib, Scripts, tcl 디렉토리 생성됨)
    D:\workspace>virtualenv flaskweb
       Using base prefix 'c:\\python'
       New python executable in D:\workspace\flaskweb\Scripts\python.exe
-      Installing setuptools, pip, wheel...done.
-
-  위 명령어를 수행하면 Include, Lib, Scripts, tcl 디렉토리 생성됨
+      Installing setuptools, pip, wheel...done. 
 
 4. Flask 설치
    D:\workspace\flaskweb>pip install Flask
+
+5. mariadb 설치
+   D:\workspace\flaskweb>pip install pymysql
