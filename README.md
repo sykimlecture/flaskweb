@@ -32,3 +32,6 @@
    COLLATE='utf8mb4_unicode_ci'
    ENGINE=InnoDB
    AUTO_INCREMENT=7;
+
+7. 추가 application 설치
+   C:\>pip install requests
