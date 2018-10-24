@@ -1,4 +1,4 @@
-Navaer의 CFR(Clova Face Recognition) 등록절차
+Naver의 CFR(Clova Face Recognition) 등록절차
 참조 : https://developers.naver.com/docs/clova/api/CFR/API_Guide.md#Overview
 
 1. 애플리케이션 등록을 완료한후 Client ID와 Client Secret 값을 발급받는다.
