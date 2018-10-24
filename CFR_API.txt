@@ -8,3 +8,5 @@ Naver의 CFR(Clova Face Recognition) 등록절차
    client_secret = "YOUR_CLIENT_SECRET"소스내에
    
 3. 예제샘플 : root/app/src/naver_cfr_example.py
+   포샵된 내사진을 넣었더니 아래와 같은 결과를... ㅎㅎ
+   {"info":{"size":{"width":740,"height":925},"faceCount":1},"faces":[{"celebrity":{"value":"배용준","confidence":0.335113}}]}
