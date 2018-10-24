@@ -1,0 +1,10 @@
+Navaer의 CFR(Clova Face Recognition) 등록절차
+참조 : https://developers.naver.com/docs/clova/api/CFR/API_Guide.md#Overview
+
+1. 애플리케이션 등록을 완료한후 Client ID와 Client Secret 값을 발급받는다.
+
+2. 소스에서 아래와 같이 선언하여 사용
+   client_id = "YOUR_CLIENT_ID"
+   client_secret = "YOUR_CLIENT_SECRET"소스내에
+   
+3. 예제샘플 : root/app/src/naver_cfr_example.py
