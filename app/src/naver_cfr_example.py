@@ -1,6 +1,6 @@
 import os
 import sys
-import requests
+import requests  # 인식 안될경우 : pip install requests 
 client_id = "CLIENT_ID"
 client_secret = "CLIENT_SECRET"
 # url = "https://openapi.naver.com/v1/vision/face" # 얼굴감지
