@@ -33,5 +33,8 @@
    ENGINE=InnoDB
    AUTO_INCREMENT=7;
 
-7. 추가 application 설치
+7. 케라스 설치
+   D:\workspace\flaskweb>pip install --upgrade keras
+   
+8. 추가 application 설치
    C:\>pip install requests
